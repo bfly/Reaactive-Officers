@@ -1,6 +1,6 @@
 package edu.dcccd.reactiveofficers.configuration;
 
-import edu.dcccd.reactiveofficers.controller.OfficerHandler;
+import edu.dcccd.reactiveofficers.controllers.OfficerHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;

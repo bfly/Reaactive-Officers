@@ -1,4 +1,4 @@
-package edu.dcccd.reactiveofficers.controller;
+package edu.dcccd.reactiveofficers.controllers;
 
 import edu.dcccd.reactiveofficers.dao.OfficerRepository;
 import edu.dcccd.reactiveofficers.entities.Officer;
@@ -7,13 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OfficerControllerTest {
@@ -47,10 +48,10 @@ class OfficerControllerTest {
     @Test
     void testGetAllOfficers() {
         client.get().uri("/officers")
-                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .accept(APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+                .expectHeader().contentType(APPLICATION_JSON)
                 .expectBodyList(Officer.class)
                 .hasSize(5)
                 .consumeWith(System.out::println);
@@ -70,12 +71,12 @@ class OfficerControllerTest {
         Officer officer = new Officer(Rank.LIEUTENANT, "Nyota", "Uhuru");
 
         client.post().uri("/officers")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(APPLICATION_JSON)
+                .accept(APPLICATION_JSON)
                 .body(Mono.just(officer), Officer.class)
                 .exchange()
                 .expectStatus().isCreated()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+                .expectHeader().contentType(APPLICATION_JSON)
                 .expectBody()
                 .jsonPath("$.id").isNotEmpty()
                 .jsonPath("$.first").isEqualTo("Nyota")
@@ -83,4 +84,3 @@ class OfficerControllerTest {
                 .consumeWith(System.out::println);
     }
 }
-

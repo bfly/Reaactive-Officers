@@ -1,4 +1,4 @@
-package edu.dcccd.reactiveofficers.controller;
+package edu.dcccd.reactiveofficers.controllers;
 
 import edu.dcccd.reactiveofficers.dao.OfficerRepository;
 import edu.dcccd.reactiveofficers.entities.Officer;

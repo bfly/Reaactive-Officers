@@ -1,4 +1,4 @@
-package edu.dcccd.reactiveofficers.controller;
+package edu.dcccd.reactiveofficers.controllers;
 
 import edu.dcccd.reactiveofficers.dao.OfficerRepository;
 import edu.dcccd.reactiveofficers.entities.Officer;
@@ -10,7 +10,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 
 @Component
 public class OfficerHandler {
